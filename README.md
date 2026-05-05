@@ -1,10 +1,10 @@
-# Gemma Local AI Infrastructure Lab
+# Gemma AI Infrastructure Lab
 
 [![CI](https://github.com/tedward-23/gemma-local-ai-infra/actions/workflows/ci.yml/badge.svg)](https://github.com/tedward-23/gemma-local-ai-infra/actions/workflows/ci.yml)
 
-Local Gemma model serving with a small production-style platform around it: a FastAPI inference gateway, Ollama model runtime, Prometheus metrics, Grafana, readiness checks, and a benchmark script.
+Gemma model serving with a production-style platform around it: a FastAPI inference gateway, Ollama model runtime, Prometheus metrics, Grafana, readiness checks, and a benchmark script.
 
-This is meant to show practical AI infrastructure work, not only a notebook. It demonstrates how a model can be packaged behind an API, observed, tested locally, and later moved to Kubernetes or a cloud GPU/CPU target.
+This is meant to show practical AI infrastructure work, not only a notebook. It demonstrates how a model can be packaged behind an API, observed, benchmarked, and prepared for Kubernetes or a cloud GPU/CPU target.
 
 ## Architecture
 
@@ -23,14 +23,14 @@ Gemma model
 
 ## What This Shows
 
-- Local LLM serving with Ollama and Gemma.
+- LLM serving with Ollama and Gemma.
 - A reusable inference API instead of direct terminal prompts.
 - Health and readiness endpoints for deployment environments.
 - Prometheus metrics for request volume, latency, and generated tokens.
 - CI checks for Python linting, Docker build validation, and container vulnerability scanning.
 - A repeatable Docker Compose setup that can evolve into Kubernetes, Terraform, and cloud deployment.
 
-## Run Locally
+## Run With Docker Compose
 
 Copy the example environment file:
 
@@ -52,7 +52,7 @@ Pull the default Gemma model:
 docker compose run --rm ollama-model-init
 ```
 
-The default model is [`gemma3:1b`](https://ollama.com/library/gemma3), which Ollama lists as an 815 MB text model with a 32K context window. That keeps the first local demo MacBook-friendly. To use a larger model, change `OLLAMA_MODEL` in `.env`.
+The default model is [`gemma3:1b`](https://ollama.com/library/gemma3), which Ollama lists as an 815 MB text model with a 32K context window. That keeps the first demo MacBook-friendly. To use a larger model, change `OLLAMA_MODEL` in `.env`.
 
 ## Test The API
 
@@ -68,7 +68,7 @@ Generate text:
 ```sh
 curl -X POST http://localhost:8000/generate \
   -H "Content-Type: application/json" \
-  -d '{"prompt":"Explain local AI model serving in three concise bullets.","max_tokens":128}'
+  -d '{"prompt":"Explain AI model serving in three concise bullets.","max_tokens":128}'
 ```
 
 Run a small benchmark:
@@ -77,18 +77,18 @@ Run a small benchmark:
 python3 scripts/benchmark.py --requests 10 --concurrency 2
 ```
 
-## Local Development URLs
+## Development URLs
 
 - API docs: http://localhost:8000/docs
 - API metrics: http://localhost:8000/metrics
 - Prometheus: http://localhost:9090
 - Grafana: http://localhost:3000
 
-Grafana uses `GRAFANA_ADMIN_USER` and `GRAFANA_ADMIN_PASSWORD` from your local `.env` file. Do not reuse the example password outside local development.
+Grafana uses `GRAFANA_ADMIN_USER` and `GRAFANA_ADMIN_PASSWORD` from your `.env` file. Do not reuse the example password outside development.
 
 ## Monitoring Dashboard
 
-The repository includes a provisioned Grafana dashboard for the local AI serving stack:
+The repository includes a provisioned Grafana dashboard for the AI serving stack:
 
 - API scrape health and request rate.
 - API p50/p95 latency.
@@ -101,7 +101,7 @@ The repository includes a provisioned Grafana dashboard for the local AI serving
 
 ## Engineering Focus
 
-This project demonstrates a practical local AI serving workflow with reproducible containers, health checks, observability, benchmarking, and deployment-ready service boundaries.
+This project demonstrates a practical AI serving workflow with reproducible containers, health checks, observability, benchmarking, and deployment-ready service boundaries.
 
 ## Next Improvements
 
@@ -109,4 +109,4 @@ This project demonstrates a practical local AI serving workflow with reproducibl
 - Add Terraform for cloud deployment.
 - Add OpenTelemetry traces.
 - Add model evaluation prompts and regression tests.
-- Add GPU profile support for cloud or local acceleration.
+- Add GPU profile support for cloud or workstation acceleration.
