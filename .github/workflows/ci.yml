@@ -57,7 +57,7 @@ jobs:
         run: docker save "$IMAGE_NAME" | gzip > image.tar.gz
 
       - name: Upload container image
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v7
         with:
           name: container-image
           path: image.tar.gz
@@ -70,7 +70,7 @@ jobs:
 
     steps:
       - name: Download container image
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v8
         with:
           name: container-image
 
