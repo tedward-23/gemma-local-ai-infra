@@ -94,9 +94,9 @@ The repository includes a provisioned Grafana dashboard for the local AI serving
 
 ![Grafana dashboard](docs/grafana-dashboard.png)
 
-## Portfolio Framing
+## Engineering Focus
 
-This project is a good replacement for a basic learning-notes repository because it has an actual runnable system. It connects DevOps experience with AI infrastructure: model serving, container orchestration, observability, benchmarking, and deployment readiness.
+This project demonstrates a practical local AI serving workflow with reproducible containers, health checks, observability, benchmarking, and deployment-ready service boundaries.
 
 ## Next Improvements
 
