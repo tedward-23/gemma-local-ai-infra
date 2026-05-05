@@ -57,7 +57,10 @@ def main() -> None:
     print("\nsummary")
     print(f"requests={len(latencies)} concurrency={args.concurrency}")
     print(f"latency_avg={statistics.mean(latencies):.2f}s")
-    print(f"latency_p95={statistics.quantiles(latencies, n=20)[-1]:.2f}s" if len(latencies) >= 2 else "latency_p95=n/a")
+    latency_p95 = (
+        f"{statistics.quantiles(latencies, n=20)[-1]:.2f}s" if len(latencies) >= 2 else "n/a"
+    )
+    print(f"latency_p95={latency_p95}")
     if token_rates:
         print(f"tokens_per_second_avg={statistics.mean(token_rates):.2f}")
 

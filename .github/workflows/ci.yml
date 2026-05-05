@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  IMAGE_NAME: gemma-local-ai-infra:${{ github.sha }}
+  TRIVY_VERSION: "0.69.3"
+
+jobs:
+  lint-build-scan:
+    name: Lint, build, and scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Ruff
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install ruff
+
+      - name: Lint Python
+        run: ruff check src scripts tests
+
+      - name: Compile Python
+        run: python -m compileall src scripts tests
+
+      - name: Validate Docker Compose
+        run: docker compose --env-file .env.example config --quiet
+
+      - name: Build container image
+        run: docker build --tag "$IMAGE_NAME" .
+
+      - name: Scan image with Trivy
+        run: |
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            -v "$HOME/.cache/trivy:/root/.cache/" \
+            aquasec/trivy:${TRIVY_VERSION} image \
+              --exit-code 1 \
+              --scanners vuln \
+              --severity HIGH,CRITICAL \
+              --ignore-unfixed \
+              --no-progress \
+              --skip-version-check \
+              "$IMAGE_NAME"

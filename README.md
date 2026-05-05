@@ -1,5 +1,7 @@
 # Gemma Local AI Infrastructure Lab
 
+[![CI](https://github.com/tedward-23/gemma-local-ai-infra/actions/workflows/ci.yml/badge.svg)](https://github.com/tedward-23/gemma-local-ai-infra/actions/workflows/ci.yml)
+
 Local Gemma model serving with a small production-style platform around it: a FastAPI inference gateway, Ollama model runtime, Prometheus metrics, Grafana, readiness checks, and a benchmark script.
 
 This is meant to show practical AI infrastructure work, not only a notebook. It demonstrates how a model can be packaged behind an API, observed, tested locally, and later moved to Kubernetes or a cloud GPU/CPU target.
@@ -25,6 +27,7 @@ Gemma model
 - A reusable inference API instead of direct terminal prompts.
 - Health and readiness endpoints for deployment environments.
 - Prometheus metrics for request volume, latency, and generated tokens.
+- CI checks for Python linting, Docker build validation, and container vulnerability scanning.
 - A repeatable Docker Compose setup that can evolve into Kubernetes, Terraform, and cloud deployment.
 
 ## Run Locally
@@ -106,5 +109,4 @@ This project demonstrates a practical local AI serving workflow with reproducibl
 - Add Terraform for cloud deployment.
 - Add OpenTelemetry traces.
 - Add model evaluation prompts and regression tests.
-- Add a GitHub Actions pipeline for lint, build, and container scan.
 - Add GPU profile support for cloud or local acceleration.
