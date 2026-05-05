@@ -81,6 +81,19 @@ python3 scripts/benchmark.py --requests 10 --concurrency 2
 
 Grafana login defaults to `admin` / `admin` unless `GRAFANA_ADMIN_PASSWORD` is changed.
 
+## Monitoring Dashboard
+
+The repository includes a provisioned Grafana dashboard for the local AI serving stack:
+
+- API scrape health and request rate.
+- API p50/p95 latency.
+- Model generation p50/p95 latency.
+- Generated token throughput.
+- Endpoint volume by method, path, and status.
+- API memory pressure and Prometheus scrape cost.
+
+![Grafana dashboard](docs/grafana-dashboard.png)
+
 ## Portfolio Framing
 
 This project is a good replacement for a basic learning-notes repository because it has an actual runnable system. It connects DevOps experience with AI infrastructure: model serving, container orchestration, observability, benchmarking, and deployment readiness.
