@@ -1,5 +1,3 @@
-name: gemma-local-ai-infra
-
 services:
   ollama:
     image: ollama/ollama:latest
