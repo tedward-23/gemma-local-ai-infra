@@ -35,6 +35,8 @@ Copy the example environment file:
 cp .env.example .env
 ```
 
+Update `GRAFANA_ADMIN_PASSWORD` in `.env` before starting Grafana.
+
 Start the stack:
 
 ```sh
@@ -72,14 +74,14 @@ Run a small benchmark:
 python3 scripts/benchmark.py --requests 10 --concurrency 2
 ```
 
-## Local URLs
+## Local Development URLs
 
 - API docs: http://localhost:8000/docs
 - API metrics: http://localhost:8000/metrics
 - Prometheus: http://localhost:9090
 - Grafana: http://localhost:3000
 
-Grafana login defaults to `admin` / `admin` unless `GRAFANA_ADMIN_PASSWORD` is changed.
+Grafana uses `GRAFANA_ADMIN_USER` and `GRAFANA_ADMIN_PASSWORD` from your local `.env` file. Do not reuse the example password outside local development.
 
 ## Monitoring Dashboard
 
