@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 env:
-  IMAGE_NAME: gemma-local-ai-infra:${{ github.sha }}
+  IMAGE_NAME: gemma-ai-infra:${{ github.sha }}
   TRIVY_VERSION: "0.69.3"
 
 jobs:

@@ -20,13 +20,13 @@ def call_api(url: str, prompt: str, max_tokens: int) -> tuple[float, int | None,
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Benchmark the local Gemma serving API.")
+    parser = argparse.ArgumentParser(description="Benchmark the Gemma serving API.")
     parser.add_argument("--url", default="http://localhost:8000", help="Base URL for the API.")
     parser.add_argument("--requests", type=int, default=10, help="Total number of requests.")
     parser.add_argument("--concurrency", type=int, default=2, help="Concurrent workers.")
     parser.add_argument(
         "--prompt",
-        default="Explain the role of observability in local AI serving in three concise bullets.",
+        default="Explain the role of observability in AI serving in three concise bullets.",
         help="Prompt to send to the model.",
     )
     parser.add_argument("--max-tokens", type=int, default=128, help="Maximum generated tokens.")

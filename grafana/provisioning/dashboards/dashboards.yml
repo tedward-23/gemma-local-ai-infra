@@ -1,7 +1,7 @@
 apiVersion: 1
 
 providers:
-  - name: Local AI Infrastructure
+  - name: AI Infrastructure
     orgId: 1
     folder: AI Infrastructure
     type: file
@@ -9,4 +9,3 @@ providers:
     editable: true
     options:
       path: /etc/grafana/provisioning/dashboards/json
-

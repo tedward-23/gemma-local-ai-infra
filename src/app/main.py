@@ -48,8 +48,8 @@ class GenerateResponse(BaseModel):
 
 
 app = FastAPI(
-    title="Gemma Local AI Infrastructure API",
-    description="Local Gemma model serving API with Docker, Ollama, and Prometheus metrics.",
+    title="Gemma AI Infrastructure API",
+    description="Gemma model serving API with Docker, Ollama, and Prometheus metrics.",
     version="0.1.0",
 )
 

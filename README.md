@@ -1,6 +1,6 @@
 # Gemma AI Infrastructure Lab
 
-[![CI](https://github.com/tedward-23/gemma-local-ai-infra/actions/workflows/ci.yml/badge.svg)](https://github.com/tedward-23/gemma-local-ai-infra/actions/workflows/ci.yml)
+[![CI](https://github.com/tedward-23/gemma-ai-infra/actions/workflows/ci.yml/badge.svg)](https://github.com/tedward-23/gemma-ai-infra/actions/workflows/ci.yml)
 
 Gemma model serving with a production-style platform around it: a FastAPI inference gateway, Ollama model runtime, Prometheus metrics, Grafana, readiness checks, and a benchmark script.
 
